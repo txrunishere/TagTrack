@@ -50,9 +50,7 @@ export const HomeSection = async () => {
           </p>
         </div>
 
-        <div className="mt-20">
-          <AddProductForm />
-        </div>
+        <AddProductForm />
 
         {products.length === 0 && (
           <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-3">
