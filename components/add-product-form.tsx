@@ -6,6 +6,7 @@ export const AddProductForm = () => {
     <div className="mt-16 w-full max-w-2xl">
       <form className="flex flex-col gap-2 sm:flex-row">
         <Input
+          className="placeholder:text-sm"
           type="url"
           placeholder="Paste Product URL (Amazon, Walmart, etc.)"
           required

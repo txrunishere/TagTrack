@@ -5,7 +5,7 @@ import { LogIn } from "lucide-react";
 export const Header = async () => {
   return (
     <header className="border-b bg-white/80 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-10">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-10">
         <div className="flex items-center gap-3">
           <Image
             className="h-20 w-auto"

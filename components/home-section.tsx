@@ -1,11 +1,4 @@
-import { BellRing, Zap, ShieldCheck } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { BellRing, Zap, ShieldCheck, History, MailCheck } from "lucide-react";
 import { FeatureCard } from "./feature-card";
 import { AddProductForm } from "./add-product-form";
 
@@ -16,24 +9,24 @@ export const HomeSection = async () => {
   const featureCards = [
     {
       id: 1,
-      icon: BellRing,
-      title: "The 'Drop' Alert",
-      description:
-        "Don't just watch the market command it. We'll ping your phone the millisecond your 'must-have' item hits your dream price.",
-    },
-    {
-      id: 2,
       icon: Zap,
       title: "Zero-Lag Velocity",
       description:
         "Flash sales vanish in seconds. Our high-octane scanners outpace the crowd, giving you a head start before the 'Sold Out' sign appears.",
     },
     {
-      id: 3,
+      id: 2,
       icon: ShieldCheck,
       title: "Bulletproof Trust",
       description:
-        "Fake deals are everywhere. We filter the noise, tracking only verified, secure so your wallet stays as safe as your savings.",
+        "Fake deals are everywhere. We filter the noise, tracking only verified, secure retailers so your wallet stays as safe as your savings.",
+    },
+    {
+      id: 3,
+      icon: MailCheck,
+      title: "Priority Inbox Intel",
+      description:
+        "Never miss a beat. Get high-priority price drop alerts delivered straight to your inbox, complete with direct links to snag the deal before it expires.",
     },
   ];
 
@@ -41,11 +34,11 @@ export const HomeSection = async () => {
     <section className="px-4 py-10 lg:py-20">
       <div className="mx-auto flex max-w-7xl flex-col items-center">
         <div className="text-center">
-          <p className="mb-1 text-xl font-bold md:mb-4 md:text-4xl">
+          <p className="mb-1 text-lg font-bold sm:text-2xl md:mb-4 md:text-4xl">
             Precision Tracking.{" "}
-            <span className="text-blue-600">Premium Savings</span>
+            <span className="text-blue-500">Premium Savings</span>
           </p>
-          <p className="font-semibold md:text-xl">
+          <p className="text-sm font-semibold sm:text-lg md:text-xl">
             Monitor every tag. Capture every price drop
           </p>
         </div>
