@@ -3,7 +3,6 @@ import { FeatureCard } from "./feature-card";
 import { AddProductForm } from "./add-product-form";
 
 export const HomeSection = async () => {
-  const user = null; // replce it with real user
   const products = []; // render real products from db
 
   const featureCards = [

@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { Button } from "./ui/button";
-import { LogIn } from "lucide-react";
+import { AuthButton } from "./auth-button";
 
 export const Header = async () => {
+  const user = null;
+
   return (
     <header className="border-b bg-white/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-10">
@@ -16,16 +17,7 @@ export const Header = async () => {
           />
         </div>
 
-        <Button
-          asChild
-          size="sm"
-          className="cursor-pointer bg-blue-500 hover:bg-blue-600"
-        >
-          <span>
-            <LogIn />
-            Sign in
-          </span>
-        </Button>
+        <AuthButton user={user} />
       </div>
     </header>
   );
