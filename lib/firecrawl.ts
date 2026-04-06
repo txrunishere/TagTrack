@@ -1,5 +1,12 @@
 import Firecrawl from "@mendable/firecrawl-js";
 
+interface ProductData {
+  productName: string;
+  currentPrice: number;
+  currencyCode?: string;
+  productImageUrl?: string;
+}
+
 const firecrawl = new Firecrawl({
   apiKey: process.env.FIRECRAWL_API_KEY,
 });
@@ -34,9 +41,9 @@ export async function scrapeProduct(url: string) {
       ],
     });
 
-    const extractedData = result.json;
+    const extractedData = result.json as ProductData;
 
-    if (!extractedData) {
+    if (!extractedData || !extractedData.productName) {
       throw new Error("No data extracted from URL");
     }
 
