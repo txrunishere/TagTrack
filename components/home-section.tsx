@@ -2,13 +2,15 @@ import { Zap, ShieldCheck, MailCheck, TrendingDown } from "lucide-react";
 import { FeatureCard } from "./feature-card";
 import { AddProductForm } from "./add-product-form";
 import { User } from "@supabase/supabase-js";
+import { getProducts } from "@/lib/actions";
+import { ProductCard } from "./product-card";
 
 type HomeSectionProps = {
   user: User | null;
 };
 
 export const HomeSection = async ({ user }: HomeSectionProps) => {
-  const products = []; // render real products from db
+  const products = user ? await getProducts() : [];
 
   const featureCards = [
     {
@@ -55,6 +57,25 @@ export const HomeSection = async ({ user }: HomeSectionProps) => {
               <FeatureCard key={feature.id} feature={feature} />
             ))}
           </div>
+        )}
+
+        {user && products.length > 0 && (
+          <section className="mx-auto mt-10 w-full max-w-7xl px-4">
+            <div className="mb-10 flex items-center justify-between">
+              <h2 className="text-lg text-gray-900">Your Tracked Products</h2>
+
+              <span className="text-sm text-gray-500">
+                {products.length}{" "}
+                {products.length === 1 ? "product" : "products"}
+              </span>
+            </div>
+
+            <div className="grid gap-2 md:grid-cols-2 md:gap-6">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </section>
         )}
 
         {user && products.length === 0 && (

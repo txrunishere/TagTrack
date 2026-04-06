@@ -151,9 +151,9 @@ export async function deleteProduct(productId: string) {
     console.error("Delete product error:", error);
 
     if (error instanceof Error) {
-      return { error: error.message };
+      return { error: error.message, success: false };
     }
-    return { error: "Failed to delete product!" };
+    return { error: "Failed to delete product!", success: false };
   }
 }
 

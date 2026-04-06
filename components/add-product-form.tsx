@@ -65,7 +65,7 @@ export const AddProductForm = ({ user }: AddProductFormProps) => {
             onChange={handleUrlChange}
           />
           <Button disabled={loading} className="bg-blue-500 hover:bg-blue-600">
-            Track Price
+            {loading ? "Tracking..." : "Track Price"}
           </Button>
         </form>
       </div>
