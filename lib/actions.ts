@@ -75,11 +75,7 @@ export async function addProduct(formdata: FormData) {
       .select()
       .single();
 
-    if (upsertProductError) {
-      return {
-        error: upsertProductError.message,
-      };
-    }
+    if (upsertProductError) throw upsertProductError;
 
     const shouldAddHistory =
       !isUpdate || existingProduct.current_price !== price;
@@ -93,11 +89,7 @@ export async function addProduct(formdata: FormData) {
           currency: currencyCode,
         });
 
-      if (historyProductError) {
-        return {
-          error: historyProductError.message,
-        };
-      }
+      if (historyProductError) return historyProductError;
     }
 
     revalidatePath("/");
@@ -120,5 +112,64 @@ export async function addProduct(formdata: FormData) {
     return {
       error: "Failed to add product",
     };
+  }
+}
+
+export async function deleteProduct(productId: string) {
+  try {
+    const supabase = await createClient();
+    const { error } = await supabase
+      .from("products")
+      .delete()
+      .eq("id", productId);
+
+    if (error) throw error;
+
+    revalidatePath("/");
+    return {
+      success: true,
+    };
+  } catch (error) {
+    console.error("Delete product error:", error);
+
+    if (error instanceof Error) {
+      return { error: error.message };
+    }
+    return { error: "Failed to delete product!" };
+  }
+}
+
+export async function getProducts() {
+  try {
+    const supabase = await createClient();
+    const { data: products, error } = await supabase
+      .from("products")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+
+    return products || [];
+  } catch (error) {
+    console.error("Get products error:", error);
+    return [];
+  }
+}
+
+export async function getProductPriceHistory(productId: string) {
+  try {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+      .from("product_history")
+      .select("*")
+      .eq("product_id", productId)
+      .order("checked_at", { ascending: true });
+
+    if (error) throw error;
+    return data || [];
+  } catch (error) {
+    console.error("Get product price history error:", error);
+    return [];
   }
 }
