@@ -1,8 +1,13 @@
-import { BellRing, Zap, ShieldCheck, History, MailCheck } from "lucide-react";
+import { Zap, ShieldCheck, MailCheck, TrendingDown } from "lucide-react";
 import { FeatureCard } from "./feature-card";
 import { AddProductForm } from "./add-product-form";
+import { User } from "@supabase/supabase-js";
 
-export const HomeSection = async () => {
+type HomeSectionProps = {
+  user: User | null;
+};
+
+export const HomeSection = async ({ user }: HomeSectionProps) => {
   const products = []; // render real products from db
 
   const featureCards = [
@@ -50,6 +55,20 @@ export const HomeSection = async () => {
               <FeatureCard key={feature.id} feature={feature} />
             ))}
           </div>
+        )}
+
+        {user && products.length === 0 && (
+          <section className="mt-10 rounded-lg border border-dashed p-10 md:mt-16">
+            <div className="flex flex-col items-center gap-4">
+              <div>
+                <TrendingDown className="h-15 w-15 text-gray-600" />
+              </div>
+              <div className="text-center">
+                <p className="text-lg font-semibold">No products yet!</p>
+                <p>Add your first product above to start tracking prices!</p>
+              </div>
+            </div>
+          </section>
         )}
       </div>
     </section>

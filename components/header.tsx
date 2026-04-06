@@ -1,13 +1,12 @@
 import Image from "next/image";
 import { AuthButton } from "./auth-button";
-import { createClient } from "@/lib/supabase/server";
+import { User } from "@supabase/supabase-js";
 
-export const Header = async () => {
-  const supabase = await createClient();
+type HeaderProps = {
+  user: User | null;
+};
 
-  const { data } = await supabase.auth.getUser();
-  const user = data?.user ?? null;
-
+export const Header = ({ user }: HeaderProps) => {
   return (
     <header className="border-b bg-white/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-10">
