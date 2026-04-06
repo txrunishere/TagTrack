@@ -1,8 +1,12 @@
 import Image from "next/image";
 import { AuthButton } from "./auth-button";
+import { createClient } from "@/lib/supabase/server";
 
 export const Header = async () => {
-  const user = null;
+  const supabase = await createClient();
+
+  const { data } = await supabase.auth.getUser();
+  const user = data?.user ?? null;
 
   return (
     <header className="border-b bg-white/80 backdrop-blur-xl">

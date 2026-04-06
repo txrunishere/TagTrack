@@ -21,12 +21,12 @@ export const AuthButton = ({ user }: AuthButtonProps) => {
     return (
       <form action={logoutAction}>
         <Button
-          asChild
           size="sm"
           variant={"outline"}
-          className="cursor-pointer gap-2 hover:bg-blue-100"
+          className="cursor-pointer hover:bg-blue-100"
+          type="submit"
         >
-          <span>
+          <span className="flex items-center gap-2">
             <LogOut />
             Sign out
           </span>
