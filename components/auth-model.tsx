@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Dialog,
   DialogContent,
@@ -6,6 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
+import { createClient } from "@/lib/supabase/client";
 
 type AuthModelProps = {
   isOpen: boolean;
@@ -13,6 +16,30 @@ type AuthModelProps = {
 };
 
 export const AuthModel = ({ isOpen, onClose }: AuthModelProps) => {
+  const supabase = createClient();
+
+  const handleGoogleLogin = async () => {
+    const { origin } = window.location;
+
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${origin}/auth/callback`,
+      },
+    });
+  };
+
+  const handleGithubLogin = async () => {
+    const { origin } = window.location;
+
+    await supabase.auth.signInWithOAuth({
+      provider: "github",
+      options: {
+        redirectTo: `${origin}/auth/callback`,
+      },
+    });
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-sm">
@@ -24,7 +51,7 @@ export const AuthModel = ({ isOpen, onClose }: AuthModelProps) => {
         </DialogHeader>
 
         <div className="flex flex-col gap-2">
-          <Button variant={"secondary"}>
+          <Button onClick={handleGoogleLogin} variant={"secondary"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="800px"
@@ -51,7 +78,7 @@ export const AuthModel = ({ isOpen, onClose }: AuthModelProps) => {
             </svg>
             Continue with Google
           </Button>
-          <Button variant={"secondary"}>
+          <Button onClick={handleGithubLogin} variant={"secondary"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { LogIn, LogOut } from "lucide-react";
 import { AuthModel } from "./auth-model";
+import { logoutAction } from "@/lib/actions";
 
 type AuthButtonProps = {
   user: User | null;
@@ -18,7 +19,7 @@ export const AuthButton = ({ user }: AuthButtonProps) => {
 
   if (user) {
     return (
-      <form action="">
+      <form action={logoutAction}>
         <Button
           asChild
           size="sm"
