@@ -5,6 +5,17 @@ import { createClient } from "./supabase/server";
 import { redirect } from "next/navigation";
 import { scrapeProduct } from "./firecrawl";
 
+type AddProductResult =
+  | {
+      success: true;
+      product: any; // you can replace with your Product type
+      message: string;
+    }
+  | {
+      success: false;
+      error: string;
+    };
+
 export async function logoutAction() {
   const supabase = await createClient();
   await supabase.auth.signOut();
@@ -12,11 +23,14 @@ export async function logoutAction() {
   redirect("/");
 }
 
-export async function addProduct(formdata: FormData) {
+export async function addProduct(
+  formdata: FormData,
+): Promise<AddProductResult> {
   const url = (formdata.get("url") as string).trim();
 
   if (!url) {
     return {
+      success: false,
       error: "URL is required!",
     };
   }
@@ -27,6 +41,7 @@ export async function addProduct(formdata: FormData) {
 
     if (!user) {
       return {
+        success: false,
         error: "Not Authorized!",
       };
     }
@@ -36,6 +51,7 @@ export async function addProduct(formdata: FormData) {
     if (!productData.productName || !productData.currentPrice) {
       console.error("Product Data", productData);
       return {
+        success: false,
         error: "Unable to extract data from this URL",
       };
     }
@@ -89,7 +105,7 @@ export async function addProduct(formdata: FormData) {
           currency: currencyCode,
         });
 
-      if (historyProductError) return historyProductError;
+      if (historyProductError) throw historyProductError;
     }
 
     revalidatePath("/");
@@ -106,10 +122,12 @@ export async function addProduct(formdata: FormData) {
 
     if (error instanceof Error)
       return {
+        success: false,
         error: error.message,
       };
 
     return {
+      success: false,
       error: "Failed to add product",
     };
   }
