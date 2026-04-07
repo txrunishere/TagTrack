@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { PriceChart } from "./price-chart";
 
 export const ProductCard = ({ product }: { product: any }) => {
   const [showPriceChart, setShowPriceChart] = useState<boolean>(false);
@@ -114,7 +115,11 @@ export const ProductCard = ({ product }: { product: any }) => {
           </Button>
         </div>
       </CardContent>
-      {showPriceChart && <CardFooter>PriceChart</CardFooter>}
+      {showPriceChart && (
+        <CardFooter className="w-full flex-1">
+          <PriceChart />
+        </CardFooter>
+      )}
     </Card>
   );
 };
