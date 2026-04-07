@@ -50,8 +50,6 @@ export const PriceChart = ({ productId }: PriceChartProps) => {
     getPriceHistory();
   }, [productId]);
 
-  console.log(productHistory);
-
   if (isLoading) {
     return (
       <div className="flex w-full items-center justify-center py-8 text-gray-500">
