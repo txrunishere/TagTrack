@@ -117,7 +117,7 @@ export const ProductCard = ({ product }: { product: any }) => {
       </CardContent>
       {showPriceChart && (
         <CardFooter className="w-full flex-1">
-          <PriceChart />
+          <PriceChart productId={product.id} />
         </CardFooter>
       )}
     </Card>
