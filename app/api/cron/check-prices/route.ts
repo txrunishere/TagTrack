@@ -116,5 +116,9 @@ export async function POST(req: NextRequest) {
       message: "Price check completed!",
       results,
     });
-  } catch (error) {}
+  } catch (error) {
+    return NextResponse.json({
+      success: false,
+    });
+  }
 }

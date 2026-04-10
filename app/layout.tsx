@@ -38,10 +38,8 @@ export default function RootLayout({
       )}
     >
       <body className="flex min-h-full flex-col">
-        <>
-          {children}
-          <Toaster position="top-center" richColors />
-        </>
+        {children}
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   );
