@@ -1,7 +1,5 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  allowedDevOrigins: [process.env.ORIGIN_IP!],
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;

@@ -63,7 +63,7 @@ export const ProductCard = ({ product }: { product: any }) => {
               {product.name}
             </h3>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
               <span className="text-lg font-bold">
                 {product.currency} {product.current_price}
               </span>
@@ -78,31 +78,32 @@ export const ProductCard = ({ product }: { product: any }) => {
       </CardHeader>
       <CardContent>
         <div className="flex items-center gap-1">
-          <Button
-            variant={"secondary"}
-            size={"sm"}
-            className="w-30 gap-1"
-            onClick={handleShowChartChange}
-          >
-            {showPriceChart ? (
-              <>
-                <ChevronUp />
-                Hide Chart
-              </>
-            ) : (
-              <>
-                <ChevronDown />
-                Show Chart
-              </>
-            )}
-          </Button>
-
-          <Button variant={"secondary"} size={"sm"} asChild>
-            <Link href={product.url} target="_blank">
-              <ExternalLink />
-              View Product
-            </Link>
-          </Button>
+          <div>
+            <Button
+              variant={"secondary"}
+              size={"sm"}
+              className="w-30 gap-1"
+              onClick={handleShowChartChange}
+            >
+              {showPriceChart ? (
+                <>
+                  <ChevronUp />
+                  Hide Chart
+                </>
+              ) : (
+                <>
+                  <ChevronDown />
+                  Show Chart
+                </>
+              )}
+            </Button>
+            <Button variant={"secondary"} size={"sm"} asChild>
+              <Link href={product.url} target="_blank">
+                <ExternalLink />
+                View Product
+              </Link>
+            </Button>
+          </div>
 
           <Button
             variant={"ghost"}
