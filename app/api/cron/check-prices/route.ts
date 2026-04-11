@@ -1,4 +1,4 @@
-import { sendPriceDropAlert } from "@/lib/email";
+import { sendPriceDropAlert } from "@/lib/nodemailer";
 import { scrapeProduct } from "@/lib/firecrawl";
 import { createClient } from "@supabase/supabase-js";
 import { NextRequest, NextResponse } from "next/server";
@@ -91,7 +91,7 @@ export async function POST(req: NextRequest) {
             if (user?.email) {
               // email logic / function call
               const emailResult = await sendPriceDropAlert({
-                userEmail: user?.email,
+                email: user?.email,
                 product,
                 newPrice,
                 oldPrice,
