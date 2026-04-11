@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { AuthButton } from "./auth-button";
 import { User } from "@supabase/supabase-js";
+import { HowToUseDialog } from "./how-to-use-dialog";
 
 type HeaderProps = {
   user: User | null;
@@ -20,7 +21,10 @@ export const Header = ({ user }: HeaderProps) => {
           />
         </div>
 
-        <AuthButton user={user} />
+        <div className="flex flex-col items-center gap-2 py-4 sm:flex-row">
+          <AuthButton user={user} />
+          <HowToUseDialog />
+        </div>
       </div>
     </header>
   );
