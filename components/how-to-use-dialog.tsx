@@ -12,14 +12,14 @@ export function HowToUseDialog() {
     <Dialog>
       <DialogTrigger asChild>
         <Button size={"sm"} variant="secondary">
-          How to Use 🚀
+          How to Use
         </Button>
       </DialogTrigger>
 
       <DialogContent className="mx-auto w-[calc(100%-2rem)] max-w-lg">
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold">
-            🚀 How to Use TagTrack
+            How to Use TagTrack
           </DialogTitle>
         </DialogHeader>
 
@@ -71,7 +71,7 @@ export function HowToUseDialog() {
 
           <div>
             <h3 className="text-foreground font-medium">
-              4. Weekly Email Alerts 📩
+              4. Weekly Email Alerts
             </h3>
             <ul className="list-disc pl-5">
               <li>Every Monday at 2:00 PM.</li>
